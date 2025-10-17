@@ -6,8 +6,8 @@ A clean, minimal **to-do list iOS app** built with **SwiftUI** and **SwiftData**
 
 ## 📱 Demo
 
-<p align="center">
-  <img src="Taskly/TasklyDemo.gif" width="300" alt="Taskly demo">
+<p align="left">
+  <img src="Taskly/TasklyDemo.gif" width="200" alt="Taskly demo">
 </p>
 
 
