@@ -22,40 +22,54 @@ struct TaskRow: View {
             } label: {
                 Image(systemName: task.isDone ? "checkmark.circle.fill" : "circle")
                     .imageScale(.large)
-                    .foregroundStyle(task.isDone ? .green : .gray)
+                    .foregroundStyle(task.isDone ? Color.tasklyPlum : .gray.opacity(0.4))
             }
             .buttonStyle(.plain)
 
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(task.title)
-                    .font(.body.weight(.medium))
+                    .font(.system(.body, design: .rounded))
+                    .fontWeight(.medium)
                     .strikethrough(task.isDone)
-                    .foregroundStyle(task.isDone ? .secondary : .primary)
+                    .foregroundStyle(task.isDone ? Color.tasklyTextSecondary : Color.tasklyTextPrimary)
 
                 if let notes = task.notes, !notes.isEmpty {
                     Text(notes)
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.tasklyTextSecondary.opacity(0.90))
                         .lineLimit(2)
                 }
 
                 if let due = task.dueAt {
                     Text(due, style: .date)
                         .font(.caption2)
+                        .foregroundStyle(Color.tasklyLavender)
+                }
+
+                if let location = task.location, !location.isEmpty {
+                    Label(location, systemImage: "mappin.and.ellipse")
+                        .font(.footnote)
                         .foregroundStyle(.secondary)
+                }
+
+                if !task.subtasks.isEmpty {
+                    HStack(spacing: 6) {
+                        Image(systemName: "list.bullet")
+                        Text("\(task.subtasks.filter { $0.isDone }.count)/\(task.subtasks.count) subtasks")
+                    }
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
                 }
             }
 
-            Spacer()
+            Spacer(minLength: 0)
         }
-        .padding(12)
-        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .strokeBorder(.quaternary, lineWidth: 0.5)
-        )
+        .padding(14)
+        .background(Color.tasklyBackground, in: RoundedRectangle(cornerRadius: 14))
+        .shadow(color: Color.tasklyLavender.opacity(0.25), radius: 5, x: 0, y: 3)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 12)
         .listRowInsets(EdgeInsets())
         .listRowSeparator(.hidden)
-        .padding(.vertical, 4)
     }
 }
