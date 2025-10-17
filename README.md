@@ -6,7 +6,8 @@ A clean, minimal **to-do list iOS app** built with **SwiftUI** and **SwiftData**
 
 ## 📱 Demo
 
-![Taskly Demo](Taskly/Taskly/TasklyDemo.gif)
+![Taskly Demo](Taskly/TasklyDemo.gif)
+
 
 *(Quick demo recorded from iPhone simulator — add, mark, and manage your daily tasks effortlessly.)*
 
